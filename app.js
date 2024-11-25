@@ -32,6 +32,12 @@ function flash(btn) {
         btn.classList.remove("flash");
     }, 350);
 }
+function btnflash(btn){
+    btn.classList.add("btnflash");
+    setTimeout(function () {
+        btn.classList.remove("btnflash");
+    }, 200);
+}
 // ----------
 
 
@@ -63,7 +69,6 @@ function checklvl(idx) {
             levelUp();
         }
     } else {
- 
         // h2.innerText = `Game Over... Your score was <b>${level}</b><br> try again !!`;
         document.querySelector("body").style.backgroundColor = "red";
         setTimeout(function () {
@@ -82,7 +87,7 @@ function checklvl(idx) {
 function btnPress() {
     // console.log(this);
     let btn = this;
-    flash(btn);
+    btnflash(btn);
 
     userColor = btn.getAttribute("id");
     userSeq.push(userColor);

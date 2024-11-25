@@ -39,3 +39,6 @@ h1{
 .flash{
     background-color: rgb(240, 205, 232);
 }
+.btnflash{
+    background-color: chartreuse;
+}
