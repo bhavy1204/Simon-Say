@@ -34,8 +34,24 @@ h1{
 }
 .yellow{
     background-color: #ffa600;
-
 }
+
+.brown{
+    background-color: brown;
+}
+.gold{
+    background-color: gold;
+}
+.gray{
+    background-color: gray;
+}
+.pink{
+    background-color: pink;
+}
+.purple{
+    background-color: purple;
+}
+
 .flash{
     background-color: rgb(240, 205, 232);
 }

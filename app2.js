@@ -1,6 +1,6 @@
 gameSeq = [];
 userSeq = [];
-let btns = ["red", "green", "blue", "yellow","pink","purple","brown","gray","gold"];
+let btns = ["red", "green", "blue", "yellow"];
 
 let heading = document.querySelector("span");
 let h2 = document.querySelector("h2")
