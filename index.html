@@ -1,29 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Simon Says - Memory Game</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
-<body>
-    <h1>Welcome to <span> simon say ! </span></h1>
-    <h2>Press any key to start</h2>
-    <div class="btn-container">
-        <div class="L1">
-            <div class="btn red" type="button" id="red"></div>
-            <div class="btn blue" type="button" id="blue"></div>
-        </div>
-        <div class="L2">
+<body class="home-page">
+    <div class="home-container">
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-main">Simon Says</span>
+                    <span class="title-sub">Memory Challenge</span>
+                </h1>
+                <p class="hero-description">
+                    Test your memory and pattern recognition skills with this classic Simon Says game. 
+                    Watch the sequence, remember the pattern, and see how far you can go!
+                </p>
+                
+                <div class="feature-highlights">
+                    <div class="feature-item">
+                        <span class="feature-icon">🧠</span>
+                        <span class="feature-text">Memory Training</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🏆</span>
+                        <span class="feature-text">Achievements</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📱</span>
+                        <span class="feature-text">Responsive Design</span>
+                    </div>
+                </div>
+            </div>
             
-            <div class="btn green" type="button" id="green"></div>
-            <div class="btn yellow" type="button" id="yellow"></div>
+            <div class="game-preview">
+                <div class="preview-title">Game Preview</div>
+                <div class="preview-buttons">
+                    <div class="preview-btn red"></div>
+                    <div class="preview-btn green"></div>
+                    <div class="preview-btn blue"></div>
+                    <div class="preview-btn yellow"></div>
+                </div>
+            </div>
         </div>
 
-    </div>
-    <script src="app.js"></script>
-</body>
+        <div class="action-section">
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="window.location.href='instructions.html'">
+                    <span class="btn-icon">📖</span>
+                    <span class="btn-text">How to Play</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+                <button class="action-btn secondary" onclick="window.location.href='game.html'">
+                    <span class="btn-icon">🎮</span>
+                    <span class="btn-text">Play Now</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+            
+            <div class="stats-preview">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalGames">0</span>
+                    <span class="stat-label">Games Played</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="highScore">0</span>
+                    <span class="stat-label">High Score</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="achievementsUnlocked">0</span>
+                    <span class="stat-label">Achievements</span>
+                </div>
+            </div>
+        </div>
 
+        <div class="footer">
+            <p>© 2024 Simon Says Game - Made with ❤️ for memory enthusiasts</p>
+        </div>
+    </div>
+
+    <script>
+        // Load and display user stats
+        document.addEventListener('DOMContentLoaded', function() {
+            const totalGames = localStorage.getItem('simonTotalGames') || 0;
+            const highScore = localStorage.getItem('simonHighScore') || 0;
+            const achievements = JSON.parse(localStorage.getItem('simonAchievements') || '[]');
+            
+            document.getElementById('totalGames').textContent = totalGames;
+            document.getElementById('highScore').textContent = highScore;
+            document.getElementById('achievementsUnlocked').textContent = achievements.filter(a => a.unlocked).length;
+            
+            // Animate preview buttons
+            animatePreviewButtons();
+        });
+
+        function animatePreviewButtons() {
+            const previewBtns = document.querySelectorAll('.preview-btn');
+            let currentIndex = 0;
+            
+            setInterval(() => {
+                previewBtns.forEach(btn => btn.classList.remove('active'));
+                previewBtns[currentIndex].classList.add('active');
+                currentIndex = (currentIndex + 1) % previewBtns.length;
+            }, 800);
+        }
+    </script>
+</body>
 </html>
