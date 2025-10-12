@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Says - Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="game-page">
+    <div class="game-container">
+        <div class="game-header">
+            <div class="score-board">
+                <div class="score-item">
+                    <span class="score-label">Level</span>
+                    <span class="score-value" id="level">1</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Score</span>
+                    <span class="score-value" id="score">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Streak</span>
+                    <span class="score-value" id="streak">0</span>
+                </div>
+            </div>
+            
+            <div class="milestone-display" id="milestoneDisplay">
+                <span class="milestone-text">🎯 Reach Level 5 for your first milestone!</span>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div class="simon-title">
+                <h1>🎮 Simon Says</h1>
+                <p class="game-status" id="gameStatus">Press Start to begin!</p>
+            </div>
+
+            <div class="btn-container">
+                <div class="btn-row">
+                    <div class="btn red" id="red" data-sound="1"></div>
+                    <div class="btn green" id="green" data-sound="2"></div>
+                </div>
+                <div class="btn-row">
+                    <div class="btn blue" id="blue" data-sound="3"></div>
+                    <div class="btn yellow" id="yellow" data-sound="4"></div>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button class="control-btn start-btn" id="startBtn">
+                    <span class="btn-icon">🚀</span>
+                    <span class="btn-text">Start Game</span>
+                </button>
+                <button class="control-btn reset-btn" id="resetBtn">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">Reset</span>
+                </button>
+                <button class="control-btn home-btn" id="homeBtn">
+                    <span class="btn-icon">🏠</span>
+                    <span class="btn-text">Home</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="achievements-panel" id="achievementsPanel">
+            <h3>🏆 Achievements</h3>
+            <div class="achievements-list" id="achievementsList">
+                <!-- Achievements will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div class="modal-overlay" id="gameOverModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎮 Game Over!</h2>
+                <p>Great job! You reached level <span id="finalLevel">0</span></p>
+            </div>
+            <div class="modal-body">
+                <div class="final-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Final Score</span>
+                        <span class="stat-value" id="finalScore">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Longest Streak</span>
+                        <span class="stat-value" id="finalStreak">0</span>
+                    </div>
+                </div>
+                <div class="achievement-unlock" id="newAchievement" style="display: none;">
+                    <div class="achievement-badge">
+                        <span class="badge-icon">🏆</span>
+                        <span class="badge-text">New Achievement Unlocked!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn secondary" id="playAgainBtn">Play Again</button>
+                <button class="modal-btn primary" id="backToHomeBtn">Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

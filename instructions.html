@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Says - Instructions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="instructions-page">
+    <div class="instructions-container">
+        <div class="instructions-card">
+            <div class="instructions-header">
+                <h1>🎮 Simon Says Game</h1>
+                <p class="subtitle">Master the art of memory and pattern recognition!</p>
+            </div>
+
+            <div class="instructions-content">
+                <div class="instruction-step" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>🎯 Watch the Pattern</h3>
+                        <p>Simon will show you a sequence of colored buttons. Watch carefully as they light up!</p>
+                    </div>
+                </div>
+
+                <div class="instruction-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>🖱️ Click to Repeat</h3>
+                        <p>After the sequence ends, click the buttons in the exact same order that Simon showed you.</p>
+                    </div>
+                </div>
+
+                <div class="instruction-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>📈 Level Up</h3>
+                        <p>Each level adds one more button to the sequence. How far can you go?</p>
+                    </div>
+                </div>
+
+                <div class="instruction-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>🏆 Earn Milestones</h3>
+                        <p>Reach special levels to unlock achievements and show off your skills!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p class="progress-text">Complete all steps to start playing!</p>
+            </div>
+
+            <div class="buttons-container">
+                <button class="btn-secondary" onclick="window.location.href='index.html'">← Back to Home</button>
+                <button class="btn-primary" id="playBtn" disabled>
+                    <span class="btn-text">Start Playing</span>
+                    <span class="btn-icon">🚀</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let completedSteps = 0;
+        const totalSteps = 4;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.instruction-step');
+            const progressFill = document.querySelector('.progress-fill');
+            const progressText = document.querySelector('.progress-text');
+            const playBtn = document.getElementById('playBtn');
+            
+            steps.forEach((step, index) => {
+                step.addEventListener('click', function() {
+                    if (!step.classList.contains('completed')) {
+                        step.classList.add('completed');
+                        completedSteps++;
+                        
+                        // Animate progress bar
+                        const progressPercent = (completedSteps / totalSteps) * 100;
+                        progressFill.style.width = progressPercent + '%';
+                        
+                        // Update progress text
+                        if (completedSteps === totalSteps) {
+                            progressText.textContent = 'All steps completed! Ready to play! 🎉';
+                            playBtn.disabled = false;
+                            playBtn.classList.add('ready');
+                        } else {
+                            progressText.textContent = `Step ${completedSteps} of ${totalSteps} completed`;
+                        }
+                        
+                        // Add celebration animation
+                        step.classList.add('celebrate');
+                        setTimeout(() => {
+                            step.classList.remove('celebrate');
+                        }, 600);
+                    }
+                });
+            });
+            
+            playBtn.addEventListener('click', function() {
+                if (!playBtn.disabled) {
+                    // Add loading animation
+                    playBtn.classList.add('loading');
+                    setTimeout(() => {
+                        window.location.href = 'game.html';
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
